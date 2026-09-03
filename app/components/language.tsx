@@ -7,16 +7,22 @@ const STORAGE_KEY='mona-travel-language';
 
 export function useSiteLanguage(){
   const [language,setLanguage]=useState<SiteLanguage>('en');
+  const [ready,setReady]=useState(false);
+
   useEffect(()=>{
     const saved=window.localStorage.getItem(STORAGE_KEY) as SiteLanguage|null;
     if(saved==='en'||saved==='fr'||saved==='ar') setLanguage(saved);
+    setReady(true);
   },[]);
+
   useEffect(()=>{
+    if(!ready) return;
     window.localStorage.setItem(STORAGE_KEY,language);
     document.documentElement.lang=language;
     document.documentElement.dir=language==='ar'?'rtl':'ltr';
     window.dispatchEvent(new CustomEvent('mona-language-change',{detail:language}));
-  },[language]);
+  },[language,ready]);
+
   return {language,setLanguage};
 }
 
