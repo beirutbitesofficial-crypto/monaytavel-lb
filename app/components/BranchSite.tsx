@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
-import {FormEvent, useState} from 'react';
+import {FormEvent,useEffect,useState} from 'react';
+import {LanguageSwitcher,useSiteLanguage} from './language';
 import styles from './BranchSite.module.css';
 
 type Mode='b2b'|'mice';
@@ -58,9 +59,17 @@ const data={
 
 export default function BranchSite({mode}:{mode:Mode}){
   const [menu,setMenu]=useState(false);
+  const {language,setLanguage}=useSiteLanguage();
   const d=data[mode];
   const other=mode==='b2b'?'/mice':'/b2b';
   const otherLabel=mode==='b2b'?'MICE':'B2B';
+
+  useEffect(()=>{
+    document.body.style.overflow=menu?'hidden':'';
+    const onKey=(event:KeyboardEvent)=>{if(event.key==='Escape')setMenu(false)};
+    window.addEventListener('keydown',onKey);
+    return()=>{document.body.style.overflow='';window.removeEventListener('keydown',onKey)};
+  },[menu]);
 
   function submit(e:FormEvent<HTMLFormElement>){
     e.preventDefault();
@@ -85,18 +94,19 @@ export default function BranchSite({mode}:{mode:Mode}){
 
   return <main className={styles.site}>
     <div className={`${styles.backdrop} ${menu?styles.open:''}`} onClick={()=>setMenu(false)}/>
-    <aside className={`${styles.drawer} ${menu?styles.open:''}`}>
-      <div className={styles.drawerHead}><Link href="/" className={styles.brand}><i className="fa-solid fa-plane-departure"/> Mona Travel</Link><button onClick={()=>setMenu(false)}>×</button></div>
+    <aside className={`${styles.drawer} ${menu?styles.open:''}`} aria-hidden={!menu}>
+      <div className={styles.drawerHead}><Link href="/" className={styles.brand}><i className="fa-solid fa-plane-departure"/> Mona Travel</Link><button onClick={()=>setMenu(false)} aria-label="Close menu">×</button></div>
+      <LanguageSwitcher language={language} onChange={setLanguage} className="drawer-language"/>
       <nav>{[['Home','home'],['About','about'],['Services','services'],['Programs','programs'],['Why Us','why'],['Contact','contact']].map(([label,id])=><a key={id} href={`#${id}`} onClick={()=>setMenu(false)}>{label}</a>)}</nav>
       <Link className={styles.switchMobile} href={other}>Switch to {otherLabel}</Link>
       <a className={styles.rfpMobile} href="#request" onClick={()=>setMenu(false)}>{d.primary}</a>
     </aside>
 
     <header className={`${styles.hero} ${mode==='mice'?styles.heroMice:styles.heroB2B}`} id="home">
-      <nav className={styles.nav}>
+      <nav className={styles.nav} aria-label="Main navigation">
         <Link href="/" className={styles.brand}><i className="fa-solid fa-plane-departure"/> Mona Travel</Link>
         <div className={styles.links}><a href="#home">Home</a><a href="#about">About</a><a href="#services">Services</a><a href="#programs">Programs</a><a href="#why">Why Us</a><a href="#contact">Contact</a></div>
-        <div className={styles.actions}><Link href={other} className={styles.switch}>{otherLabel}</Link><a href="#request" className={styles.navRfp}>Request</a><button onClick={()=>setMenu(true)} aria-label="Open menu">☰</button></div>
+        <div className={styles.actions}><LanguageSwitcher language={language} onChange={setLanguage} className="branch-language"/><Link href={other} className={styles.switch}>{otherLabel}</Link><a href="#request" className={styles.navRfp}>Request</a><button onClick={()=>setMenu(true)} aria-label="Open menu" aria-expanded={menu}>☰</button></div>
       </nav>
       <div className={styles.heroInner}>
         <div className={styles.badge}><i className={mode==='b2b'?'fa-regular fa-building':'fa-solid fa-people-group'}/> {d.eyebrow}</div>
