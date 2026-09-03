@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 import LanguageRuntime from './components/LanguageRuntime';
 import './globals.css';
+import './nav-language-fixes.css';
 
 export const metadata: Metadata = {
   title: 'Mona Travel — Lebanon Travel, B2B & MICE',
