@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import {useState} from 'react';
+import {FormEvent,useState} from 'react';
 
 const destinations=[
   ['Beirut','The vibrant capital — where history, culture and modern energy meet.','https://monatravel-lb.com/images/beirut.png'],
@@ -22,6 +22,25 @@ const services=[
 export default function HomePage(){
   const [menu,setMenu]=useState(false);
   const close=()=>setMenu(false);
+
+  function submitBooking(e:FormEvent<HTMLFormElement>){
+    e.preventDefault();
+    const fd=new FormData(e.currentTarget);
+    const subject=`Leisure Reservation Request — ${fd.get('firstName')||''} ${fd.get('lastName')||''}`.trim();
+    const body=[
+      'MONA TRAVEL RESERVATION REQUEST','',
+      `Name: ${fd.get('firstName')||''} ${fd.get('lastName')||''}`,
+      `Email: ${fd.get('email')||''}`,
+      `Phone: ${fd.get('phone')||''}`,
+      `Nationality: ${fd.get('nationality')||'Not specified'}`,
+      `Number of Travelers: ${fd.get('travelers')||''}`,
+      `Arrival Date: ${fd.get('arrival')||''}`,
+      `Departure Date: ${fd.get('departure')||''}`,
+      `Trip Type: ${fd.get('tripType')||''}`,'',
+      'Special Requests:',String(fd.get('requests')||'None')
+    ].join('\n');
+    window.location.href=`mailto:contact@monatravel-lb.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  }
 
   return <>
     <div className={'drawer-backdrop '+(menu?'open':'')} onClick={close}/>
@@ -145,16 +164,16 @@ export default function HomePage(){
           <p className="lead">Tell us when you are coming and what you would like to experience. Our team will prepare a personalized travel proposal.</p>
           <div style={{marginTop:25}}><b>✓ Tailor-Made Planning</b><p className="lead">Programs built around your travel style.</p><b>✓ Local Support</b><p className="lead">One team supporting your trip in Lebanon.</p><b>✓ Flexible Options</b><p className="lead">Accommodation, transport, tours and activities combined as needed.</p></div>
         </div>
-        <form className="form" onSubmit={e=>{e.preventDefault();alert('Thank you! Your reservation request is ready for the Mona Travel team.')}}>
+        <form className="form" onSubmit={submitBooking}>
           <h3 className="serif" style={{fontSize:30,marginTop:0}}>Reservation Request</h3>
           <div className="form-grid">
-            <label className="field">First Name *<input required/></label><label className="field">Last Name *<input required/></label>
-            <label className="field">Email *<input type="email" required/></label><label className="field">Phone *<input required/></label>
-            <label className="field">Nationality<input/></label><label className="field">Number of Travelers *<input type="number" min="1" required/></label>
-            <label className="field">Arrival Date *<input type="date" required/></label><label className="field">Departure Date *<input type="date" required/></label>
-            <label className="field full">Trip Type *<select required defaultValue=""><option value="" disabled>Select trip type</option><option>Leisure</option><option>Adventure</option><option>Family</option><option>Honeymoon</option><option>Group Travel</option></select></label>
-            <label className="field full">Special Requests<textarea rows={4}/></label>
-            <button className="primary field full">Submit Reservation Request</button>
+            <label className="field">First Name *<input name="firstName" required/></label><label className="field">Last Name *<input name="lastName" required/></label>
+            <label className="field">Email *<input name="email" type="email" required/></label><label className="field">Phone *<input name="phone" required/></label>
+            <label className="field">Nationality<input name="nationality"/></label><label className="field">Number of Travelers *<input name="travelers" type="number" min="1" required/></label>
+            <label className="field">Arrival Date *<input name="arrival" type="date" required/></label><label className="field">Departure Date *<input name="departure" type="date" required/></label>
+            <label className="field full">Trip Type *<select name="tripType" required defaultValue=""><option value="" disabled>Select trip type</option><option>Leisure</option><option>Adventure</option><option>Family</option><option>Honeymoon</option><option>Group Travel</option></select></label>
+            <label className="field full">Special Requests<textarea name="requests" rows={4}/></label>
+            <button className="primary field full" type="submit">Prepare Reservation Request</button>
           </div>
         </form>
       </div>
