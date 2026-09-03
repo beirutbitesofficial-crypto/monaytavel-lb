@@ -15,6 +15,7 @@ export function useSiteLanguage(){
     window.localStorage.setItem(STORAGE_KEY,language);
     document.documentElement.lang=language;
     document.documentElement.dir=language==='ar'?'rtl':'ltr';
+    window.dispatchEvent(new CustomEvent('mona-language-change',{detail:language}));
   },[language]);
   return {language,setLanguage};
 }
