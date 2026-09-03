@@ -2,7 +2,7 @@ node_modules
 .next
 out
 .env
-.env.local
-.env.production
-*.log
+.env.*
+!.env.example
 .DS_Store
+npm-debug.log*
