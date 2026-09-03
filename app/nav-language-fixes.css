@@ -1,0 +1,38 @@
+/* Shared navbar + language behavior for Home, B2B and MICE */
+html{scroll-padding-top:100px}
+section[id],header[id]{scroll-margin-top:100px}
+header>nav{position:fixed!important;top:0!important;left:0!important;right:0!important;width:100%!important;z-index:70!important;background:rgba(6,23,36,.94)!important;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 1px 0 rgba(255,255,255,.10),0 8px 28px rgba(0,0,0,.12)}
+header>nav+div{padding-top:174px!important}
+
+.language-switcher{display:inline-flex;align-items:center;gap:3px;padding:3px;border:1px solid rgba(255,255,255,.35);border-radius:999px;background:rgba(4,22,35,.30);direction:ltr}
+.language-switcher button{appearance:none;border:0;background:transparent;color:#d8e0e5;padding:7px 8px;border-radius:999px;font-size:10px;line-height:1;font-weight:800;letter-spacing:.04em;cursor:pointer;transition:.18s ease}
+.language-switcher button:hover{color:#fff;background:rgba(255,255,255,.10)}
+.language-switcher button.active{background:#d8aa55;color:#102335}
+.drawer-lang{display:flex!important;align-items:center;gap:10px;padding:0!important;border:0!important}
+.drawer-language{margin:26px 0 4px;width:max-content}
+.nav-language,.branch-language{flex:none}
+
+/* Keep mobile drawers usable above the fixed navbar */
+.drawer,.drawer-backdrop{z-index:100!important}
+.drawer-backdrop{z-index:90!important}
+
+/* Arabic / RTL */
+html[dir='rtl'] body{text-align:right}
+html[dir='rtl'] .drawer{right:auto;left:0;transform:translateX(-105%)}
+html[dir='rtl'] .drawer.open{transform:none}
+html[dir='rtl'] .corp-item{flex-direction:row-reverse;text-align:right}
+html[dir='rtl'] .destination h3,html[dir='rtl'] .destination p{left:auto;right:24px}
+html[dir='rtl'] input,html[dir='rtl'] select,html[dir='rtl'] textarea{text-align:right}
+
+@media(max-width:1000px){
+  .branch-language{display:none}
+}
+@media(max-width:980px){
+  header>nav+div{padding-top:145px!important}
+}
+@media(max-width:640px){
+  html{scroll-padding-top:86px}
+  section[id],header[id]{scroll-margin-top:86px}
+  header>nav+div{padding-top:130px!important}
+  .language-switcher button{padding:8px 10px;font-size:11px}
+}
