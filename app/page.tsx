@@ -1,7 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import {FormEvent,useState} from 'react';
+import {FormEvent,useEffect,useState} from 'react';
+import {LanguageSwitcher,useSiteLanguage} from './components/language';
 
 const destinations=[
   ['Beirut','The vibrant capital — where history, culture and modern energy meet.','https://monatravel-lb.com/images/beirut.png'],
@@ -21,7 +22,15 @@ const services=[
 
 export default function HomePage(){
   const [menu,setMenu]=useState(false);
+  const {language,setLanguage}=useSiteLanguage();
   const close=()=>setMenu(false);
+
+  useEffect(()=>{
+    document.body.style.overflow=menu?'hidden':'';
+    const onKey=(event:KeyboardEvent)=>{if(event.key==='Escape')setMenu(false)};
+    window.addEventListener('keydown',onKey);
+    return()=>{document.body.style.overflow='';window.removeEventListener('keydown',onKey)};
+  },[menu]);
 
   function submitBooking(e:FormEvent<HTMLFormElement>){
     e.preventDefault();
@@ -44,12 +53,12 @@ export default function HomePage(){
 
   return <>
     <div className={'drawer-backdrop '+(menu?'open':'')} onClick={close}/>
-    <aside className={'drawer '+(menu?'open':'')}>
+    <aside className={'drawer '+(menu?'open':'')} aria-hidden={!menu}>
       <div className="drawer-head">
-        <div className="brand"><i className="fa-solid fa-plane-departure"/>Mona Travel</div>
+        <a href="#home" className="brand" onClick={close}><i className="fa-solid fa-plane-departure"/>Mona Travel</a>
         <button className="drawer-close" onClick={close} aria-label="Close menu">×</button>
       </div>
-      <div className="drawer-lang"><i className="fa-solid fa-globe"/> &nbsp; EN⌄</div>
+      <div className="drawer-lang"><i className="fa-solid fa-globe"/><LanguageSwitcher language={language} onChange={setLanguage}/></div>
       <nav className="drawer-links">
         <a href="#home" onClick={close}>Home</a>
         <a href="#about" onClick={close}>About</a>
@@ -71,14 +80,15 @@ export default function HomePage(){
     </aside>
 
     <header className="hero" id="home" style={{backgroundImage:"linear-gradient(90deg,rgba(4,24,39,.88),rgba(4,24,39,.40)),url('https://monatravel-lb.com/images/background.png')"}}>
-      <nav className="nav">
+      <nav className="nav" aria-label="Main navigation">
         <a href="#home" className="brand"><i className="fa-solid fa-plane-departure"/>Mona Travel</a>
         <div className="desktop-links">
           <a href="#home">Home</a><a href="#about">About</a><a href="#services">Services</a><a href="#destinations">Destinations</a><a href="#programs">Programs</a>
           <Link className="corp" href="/b2b">B2B</Link><Link className="corp" href="/mice">MICE</Link>
-          <a href="#book">Book Now</a><a href="#contact">Contact</a><span className="lang">◎ EN⌄</span>
+          <a href="#book">Book Now</a><a href="#contact">Contact</a>
+          <LanguageSwitcher language={language} onChange={setLanguage} className="nav-language"/>
         </div>
-        <button className="hamb" onClick={()=>setMenu(true)} aria-label="Open menu">☰</button>
+        <button className="hamb" onClick={()=>setMenu(true)} aria-label="Open menu" aria-expanded={menu}>☰</button>
       </nav>
 
       <div className="hero-content">
@@ -95,13 +105,13 @@ export default function HomePage(){
             <i className="fa-regular fa-building"/><small>BUSINESS TRAVEL & DESTINATION MANAGEMENT</small>
             <h3>B2B Travel</h3>
             <p>Corporate travel, delegations, hotel sourcing, executive transport and complete ground handling.</p>
-            <Link href="/b2b">Enter B2B Website &nbsp;→</Link>
+            <Link href="/b2b">Enter B2B Website →</Link>
           </article>
           <article className="choice">
             <i className="fa-solid fa-people-group"/><small>MEETINGS · INCENTIVES · CONFERENCES · EVENTS</small>
             <h3>MICE</h3>
             <p>Meetings, incentive programs, conferences, exhibitions and end-to-end event management.</p>
-            <Link href="/mice">Enter MICE Website &nbsp;→</Link>
+            <Link href="/mice">Enter MICE Website →</Link>
           </article>
         </div>
       </div>
@@ -197,6 +207,6 @@ export default function HomePage(){
       </div>
       <div className="copyright">© 2026 Mona Travel. All rights reserved.</div>
     </footer>
-    <a className="wa" href="https://wa.me/96171472852" target="_blank" rel="noreferrer"><i className="fa-brands fa-whatsapp"/></a>
+    <a className="wa" href="https://wa.me/96171472852" target="_blank" rel="noreferrer" aria-label="WhatsApp"><i className="fa-brands fa-whatsapp"/></a>
   </>;
 }
