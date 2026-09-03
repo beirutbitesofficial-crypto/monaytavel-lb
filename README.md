@@ -1,28 +1,64 @@
-# Mona Travel — B2B & MICE
+# Mona Travel — Next.js B2B & MICE Web App
 
-Official static website source for Mona Travel Lebanon.
+Mona Travel has been converted from a static HTML website into a Next.js App Router web application using TypeScript and React.
 
-## Positioning
+## Stack
 
-- Leisure travel in Lebanon
-- Lebanon DMC / inbound ground handling
-- B2B travel partnerships
-- Corporate travel management
-- MICE: Meetings, Incentives, Conferences and Exhibitions
-- Team building and incentive programs
-- Bleisure programs
+- Next.js 15
+- React 19
+- TypeScript
+- App Router
+- Lucide React icons
+- Responsive custom CSS
 
-## Main pages
+## Main experience
 
-- `index.html` — leisure + corporate gateway homepage
-- `corporate-mice.html` — dedicated B2B & MICE landing page and RFP form
-- `style.css` — responsive website styles
-- `script.js` — navigation and form behavior
+The homepage opens with two clear user journeys:
 
-## Corporate RFP
+1. **B2B Travel & DMC** — corporate travel, incoming delegations, hotel sourcing, executive transport and ground handling.
+2. **MICE** — Meetings, Incentives, Conferences and Exhibitions.
 
-The current site is static. Corporate and reservation forms prepare a structured email to `contact@monatravel-lb.com` rather than pretending to submit to a backend that does not exist.
+Both experiences live on the same page and scroll to their dedicated sections.
 
-## Assets
+Additional sections include Incentive Travel, Team Building, Bleisure, Why Choose Mona Travel, hotel partnerships and a Corporate/MICE RFP form.
 
-The clean repository version references the existing public Mona Travel image assets from `monatravel-lb.com` to keep the repository lightweight. These can be moved into a local `/images` directory later if desired.
+## Local development
+
+```bash
+npm install
+npm run dev
+```
+
+Open `http://localhost:3000`.
+
+## Production build
+
+```bash
+npm install
+npm run build
+npm start
+```
+
+## Hostinger Web App deployment
+
+Use the GitHub repository as the deployment source.
+
+Recommended settings:
+
+- Framework: **Next.js / Node.js**
+- Node.js: **20 or newer**
+- Install command: `npm install`
+- Build command: `npm run build`
+- Start command: `npm start`
+- Port: use the `PORT` value supplied by Hostinger; the start script automatically respects it.
+- Root directory: repository root
+
+No environment variables are required for the current version.
+
+## RFP form
+
+The current RFP form prepares a structured email to `contact@monatravel-lb.com`. A server-side database/email API can be connected later without changing the public page structure.
+
+## Legacy files
+
+The old static HTML/CSS/JS files are still present in the repository for reference, but the active application is the Next.js app inside `/app`.
