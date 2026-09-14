@@ -11,7 +11,7 @@ const fr:Record<string,string>={
   'YOUR TRUSTED LOCAL PARTNER IN LEBANON':'VOTRE PARTENAIRE LOCAL DE CONFIANCE AU LIBAN',
   'Discover Lebanon with Mona Travel':'Découvrez le Liban avec Mona Travel',
   'Tailor-made leisure travel, local experiences and complete destination support — now strengthened by dedicated B2B Travel and MICE divisions for professional partners.':'Voyages de loisirs sur mesure, expériences locales et accompagnement complet à destination — renforcés par nos divisions B2B Travel et MICE dédiées aux partenaires professionnels.',
-  'Explore Lebanon':'Découvrir le Liban','Plan Your Trip':'Planifier votre voyage',
+  'Explore Lebanon':'Découvrir le Liban',
   'BUSINESS TRAVEL & DESTINATION MANAGEMENT':'VOYAGES D’AFFAIRES & GESTION DE DESTINATION','B2B Travel':'Voyages B2B','Corporate travel, delegations, hotel sourcing, executive transport and complete ground handling.':'Voyages d’affaires, délégations, recherche hôtelière, transport exécutif et assistance locale complète.','Enter B2B Website →':'Accéder au site B2B →',
   'MEETINGS · INCENTIVES · CONFERENCES · EVENTS':'RÉUNIONS · INCENTIVES · CONFÉRENCES · ÉVÉNEMENTS','MICE':'MICE','Meetings, incentive programs, conferences, exhibitions and end-to-end event management.':'Réunions, programmes incentive, conférences, expositions et gestion événementielle de bout en bout.','Enter MICE Website →':'Accéder au site MICE →',
   'Who We Are':'Qui sommes-nous','About Mona Travel':'À propos de Mona Travel','What We Offer':'Ce que nous proposons','Our Best Services':'Nos meilleurs services','Where To Go':'Où aller','Tourist Destinations':'Destinations touristiques','Experiences':'Expériences','Our Programs':'Nos programmes',
