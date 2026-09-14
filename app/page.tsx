@@ -142,7 +142,7 @@ export default function HomePage(){
           </div>
         </div>
         <div className="about-logo-card">
-          <img src="https://monatravel-lb.com/images/monatravel.png" alt="Mona Travel official logo"/>
+          <img src="/mona-travel-logo.svg" alt="Mona Travel official logo"/>
           <span>Travel · B2B · MICE</span>
         </div>
       </div>
