@@ -5,12 +5,12 @@ import {FormEvent,useEffect,useState} from 'react';
 import {LanguageSwitcher,useSiteLanguage} from './components/language';
 
 const destinations=[
-  ['Beirut','The vibrant capital — where history, culture and modern energy meet.','https://monatravel-lb.com/images/beirut.png'],
-  ['Harissa','Iconic hilltop sanctuary with panoramic views over Jounieh Bay.','https://monatravel-lb.com/images/harissa.png'],
-  ['Jeita Grotto','One of Lebanon’s most spectacular natural wonders.','https://monatravel-lb.com/images/jeita-grotto.png'],
-  ['Baalbek','Monumental Roman temples and one of Lebanon’s greatest heritage sites.','https://monatravel-lb.com/images/baalbek.png'],
-  ['Byblos','Ancient history, Mediterranean charm and unforgettable coastal atmosphere.','https://monatravel-lb.com/images/byblos.png'],
-  ['Sidon','A historic coastal city known for its old souks and sea castle.','https://monatravel-lb.com/images/sidon.png']
+  ['Beirut','The vibrant capital — where history, culture and modern energy meet.','https://images.unsplash.com/photo-1632854269541-dfff1eb1646f?auto=format&fit=crop&w=1600&q=85'],
+  ['Harissa','Iconic hilltop sanctuary with panoramic views over Jounieh Bay.','https://images.unsplash.com/photo-1585904328284-992011a849cd?auto=format&fit=crop&w=1600&q=85'],
+  ['Jeita Grotto','One of Lebanon’s most spectacular natural wonders.','https://images.unsplash.com/photo-1687190521237-3d2e22d6cad0?auto=format&fit=crop&w=1600&q=85'],
+  ['Baalbek','Monumental Roman temples and one of Lebanon’s greatest heritage sites.','https://images.unsplash.com/photo-1672330647878-98bf07b26e78?auto=format&fit=crop&w=1600&q=85'],
+  ['Byblos','Ancient history, Mediterranean charm and unforgettable coastal atmosphere.','https://images.unsplash.com/photo-1628886672647-39cad666990a?auto=format&fit=crop&w=1600&q=85'],
+  ['Sidon','A historic coastal city known for its old souks and sea castle.','https://images.unsplash.com/photo-1699352523960-15b22ffeda01?auto=format&fit=crop&w=1600&q=85']
 ];
 
 const services=[
@@ -90,7 +90,7 @@ export default function HomePage(){
       </div>
     </aside>
 
-    <header className="hero" id="home" style={{backgroundImage:"linear-gradient(90deg,rgba(4,24,39,.88),rgba(4,24,39,.40)),url('https://monatravel-lb.com/images/background.png')"}}>
+    <header className="hero" id="home" style={{backgroundImage:"linear-gradient(90deg,rgba(4,24,39,.88),rgba(4,24,39,.40)),url('https://images.unsplash.com/photo-1632854269541-dfff1eb1646f?auto=format&fit=crop&w=2000&q=88')"}}>
       <nav className="nav" aria-label="Main navigation">
         <a href="#home" className="brand"><i className="fa-solid fa-plane-departure"/>Mona Travel</a>
         <div className="desktop-links">
