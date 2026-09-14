@@ -17,7 +17,18 @@ const services=[
   ['fa-hotel','Hotel Reservation','Handpicked accommodation across Lebanon, from Beirut business hotels to boutique and mountain stays.'],
   ['fa-car','Transportation','Airport transfers, private vehicles, luxury cars, vans and coaches for individuals and groups.'],
   ['fa-user-tie','Tour Guides','Professional multilingual guides for cultural, historical and tailor-made experiences.'],
-  ['fa-route','Tailored Trips','Customized itineraries built around your interests, schedule, group profile and budget.']
+  ['fa-route','Tailored Trips','Customized itineraries built around your interests, schedule, group profile and budget.'],
+  ['fa-people-roof','Meetings & Corporate Events','Venue sourcing, board meetings, workshops, launches and complete on-ground coordination.'],
+  ['fa-users-rectangle','Conferences & Congresses','Conference venues, delegate logistics, accommodation, transport, AV and event-day support.'],
+  ['fa-trophy','Incentive Travel & Team Building','Reward trips and team experiences combining culture, nature, gastronomy and premium hospitality.'],
+  ['fa-shop','Event & Exhibition Logistics','Local support for exhibitions, trade events, group movements, hospitality and supplier coordination.']
+];
+
+const miceHighlights=[
+  ['Meetings','Professional meeting spaces, executive sessions and workshops coordinated around your agenda.','https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=82'],
+  ['Conferences & Congresses','Venue sourcing, delegate flows, hotels, transport, AV, catering and on-site coordination.','https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=1200&q=82'],
+  ['Corporate Events','Product launches, networking events, gala dinners and branded experiences managed end to end.','https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1200&q=82'],
+  ['Incentives & Team Building','Memorable team programs that combine Lebanon’s culture, food, mountains and coast.','https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=82']
 ];
 
 export default function HomePage(){
@@ -118,21 +129,29 @@ export default function HomePage(){
     </header>
 
     <section className="section" id="about">
-      <div className="eyebrow">Who We Are</div>
-      <h2 className="section-title">About Mona Travel</h2>
-      <p className="lead">Mona Travel is a Lebanon-based travel agency officially registered with the Lebanese Ministry of Tourism. We provide high-quality travel and destination services for individual travelers, groups, international travel agencies and professional partners.</p>
-      <p className="lead">Our role is simple: make Lebanon easier to experience. From accommodation and transportation to private tours, tailored programs and on-ground coordination, we bring local knowledge and dependable execution together under one brand.</p>
-      <div className="stats">
-        <div className="stat"><b>Local</b><div>Destination Expertise</div></div>
-        <div className="stat"><b>360°</b><div>Travel Support</div></div>
-        <div className="stat"><b>B2B + MICE</b><div>Specialist Divisions</div></div>
+      <div className="about-layout">
+        <div>
+          <div className="eyebrow">Who We Are</div>
+          <h2 className="section-title">About Mona Travel</h2>
+          <p className="lead">Mona Travel is a Lebanon-based travel agency officially registered with the Lebanese Ministry of Tourism. We provide high-quality travel and destination services for individual travelers, groups, international travel agencies and professional partners.</p>
+          <p className="lead">Our role is simple: make Lebanon easier to experience. From accommodation and transportation to private tours, tailored programs, MICE and on-ground coordination, we bring local knowledge and dependable execution together under one brand.</p>
+          <div className="stats">
+            <div className="stat"><b>Local</b><div>Destination Expertise</div></div>
+            <div className="stat"><b>360°</b><div>Travel Support</div></div>
+            <div className="stat"><b>B2B + MICE</b><div>Specialist Divisions</div></div>
+          </div>
+        </div>
+        <div className="about-logo-card">
+          <img src="/mona-travel-logo-hd.webp" alt="Mona Travel official logo"/>
+          <span>Travel · B2B · MICE</span>
+        </div>
       </div>
     </section>
 
     <section className="section" id="services" style={{background:'#f0eee8'}}>
       <div className="eyebrow">What We Offer</div>
-      <h2 className="section-title">Our Best Services</h2>
-      <p className="lead">Everything you need for a smooth, personalized trip across Lebanon.</p>
+      <h2 className="section-title">Travel, Events & MICE Services</h2>
+      <p className="lead">From leisure travel and transportation to meetings, conferences, corporate events and complete MICE support.</p>
       <div className="services">
         {services.map(([icon,title,text])=><article className="card" key={title}><i className={'fa-solid '+icon}/><h3>{title}</h3><p>{text}</p></article>)}
       </div>
@@ -145,6 +164,19 @@ export default function HomePage(){
       <div className="destinations">
         {destinations.map(([name,text,img])=><article className="destination" key={name}><img src={img} alt={name}/><h3>{name}</h3><p>{text}</p></article>)}
       </div>
+    </section>
+
+    <section className="section mice-showcase" id="mice-experiences">
+      <div className="eyebrow">MICE in Lebanon</div>
+      <h2 className="section-title">Meetings, Conferences & Events</h2>
+      <p className="lead">Mona Travel handles the complete destination layer for professional gatherings in Lebanon — from the venue and accommodation to delegate transport, suppliers, hospitality and on-site execution.</p>
+      <div className="mice-visual-grid">
+        {miceHighlights.map(([title,text,img])=><article className="mice-visual" key={title}>
+          <img src={img} alt={title}/>
+          <div className="mice-visual-copy"><h3>{title}</h3><p>{text}</p></div>
+        </article>)}
+      </div>
+      <Link href="/mice" className="mice-cta">Explore Mona Travel MICE →</Link>
     </section>
 
     <section className="section" id="programs" style={{background:'#f0eee8'}}>
